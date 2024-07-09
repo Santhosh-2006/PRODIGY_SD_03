@@ -18,6 +18,7 @@ def add_contact(contacts):
     phone = input("Enter phone number: ")
     email = input("Enter email address: ")
     contacts[name] = {'phone': phone, 'email': email}
+    save_contacts(contacts)
     print(f"Contact {name} added.")
 
 def view_contacts(contacts):
@@ -33,6 +34,7 @@ def edit_contact(contacts):
         phone = input(f"Enter new phone number for {name} (current: {contacts[name]['phone']}): ")
         email = input(f"Enter new email address for {name} (current: {contacts[name]['email']}): ")
         contacts[name] = {'phone': phone, 'email': email}
+        save_contacts(contacts)
         print(f"Contact {name} updated.")
     else:
         print(f"Contact {name} not found.")
@@ -41,6 +43,7 @@ def delete_contact(contacts):
     name = input("Enter the name of the contact to delete: ")
     if name in contacts:
         del contacts[name]
+        save_contacts(contacts)
         print(f"Contact {name} deleted.")
     else:
         print(f"Contact {name} not found.")
@@ -54,7 +57,7 @@ def main():
         print("2. View contacts")
         print("3. Edit a contact")
         print("4. Delete a contact")
-       
+        print("5. Exit")
         
         choice = input("Enter your choice: ")
         
@@ -66,7 +69,8 @@ def main():
             edit_contact(contacts)
         elif choice == '4':
             delete_contact(contacts)
-                   break
+        elif choice == '5':
+            break
         else:
             print("Invalid choice. Please try again.")
 
